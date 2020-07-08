@@ -15,7 +15,15 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 5; //Assgining a variable for the left die
+  int rightDiceNumber = 1;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,9 +34,13 @@ class DicePage extends StatelessWidget {
             //contains the 'flex' property that decides how much of the space it will take by deafult it is 1
             child: FlatButton(
               onPressed: () {
-                print('Left Button Pressed');
+                setState(() {
+                  //Calls the build method again and applies updates
+                  leftDiceNumber = 2;
+                });
+//                print('Left Button Pressed');
               },
-              child: Image.asset('images/dice1.png'),
+              child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
           ),
           Expanded(
@@ -36,7 +48,10 @@ class DicePage extends StatelessWidget {
             //contains the 'flex' property that decides how much of the space it will take by deafult it is 1
             child: FlatButton(
               onPressed: () {
-                print('Right Button Pressed');
+                setState(() {
+                  rightDiceNumber = 5;
+                });
+//                print('Right Button Pressed');
               },
               child: Image.asset('images/dice2.png'),
             ),
