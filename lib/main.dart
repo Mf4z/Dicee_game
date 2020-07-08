@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,12 +32,13 @@ class _DicePageState extends State<DicePage> {
         children: <Widget>[
           Expanded(
             //Used to fill up the child to take up the screen space
-            //contains the 'flex' property that decides how much of the space it will take by deafult it is 1
+            //contains the 'flex' property that decides how much of the space it will take by default it is 1
             child: FlatButton(
               onPressed: () {
                 setState(() {
                   //Calls the build method again and applies updates
-                  leftDiceNumber = 2;
+                  leftDiceNumber = Random().nextInt(6) +
+                      1; //Using Random function from math.dart library
                 });
 //                print('Left Button Pressed');
               },
@@ -49,11 +51,11 @@ class _DicePageState extends State<DicePage> {
             child: FlatButton(
               onPressed: () {
                 setState(() {
-                  rightDiceNumber = 5;
+                  rightDiceNumber = Random().nextInt(6) + 1;
                 });
 //                print('Right Button Pressed');
               },
-              child: Image.asset('images/dice2.png'),
+              child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
           ),
         ],
