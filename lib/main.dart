@@ -25,6 +25,14 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 5; //Assgining a variable for the left die
   int rightDiceNumber = 1;
 
+  //Roll Dice method
+  void rollDice() {
+    setState(() {
+      rightDiceNumber = Random().nextInt(6) + 1;
+      leftDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -35,11 +43,7 @@ class _DicePageState extends State<DicePage> {
             //contains the 'flex' property that decides how much of the space it will take by default it is 1
             child: FlatButton(
               onPressed: () {
-                setState(() {
-                  //Calls the build method again and applies updates
-                  leftDiceNumber = Random().nextInt(6) +
-                      1; //Using Random function from math.dart library
-                });
+                rollDice();
 //                print('Left Button Pressed');
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
@@ -50,9 +54,7 @@ class _DicePageState extends State<DicePage> {
             //contains the 'flex' property that decides how much of the space it will take by deafult it is 1
             child: FlatButton(
               onPressed: () {
-                setState(() {
-                  rightDiceNumber = Random().nextInt(6) + 1;
-                });
+                rollDice(); //Roll dice method call
 //                print('Right Button Pressed');
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
